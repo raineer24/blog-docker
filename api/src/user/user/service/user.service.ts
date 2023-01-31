@@ -15,15 +15,15 @@ export class UserService {
     return from(this.userRepository.save(user));
   }
 
-  findAll(): Observable<> {
-    return from(this.userRepository.save(user));
+  findAll(): Observable<User[]> {
+    return from(this.userRepository.find());
   }
 
-  deleteOne(): Observable<> {
-    return from(this.userRepository.save(user));
+  deleteOne(id: number): Observable<any> {
+    return from(this.userRepository.delete(id));
   }
 
-  updateOne(): Observable<> {
-    return from(this.userRepository.save(user));
+  updateOne(id: number, user: User): Observable<any> {
+    return from(this.userRepository.update(id, user));
   }
 }
