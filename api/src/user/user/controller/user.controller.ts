@@ -22,13 +22,28 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  create() {}
+  @Post()
+  create(@Body() user: User): Observable<User> {
+    return this.userService.create(user);
+  }
 
-  findOne() {}
+  @Get(':id')
+  findOne(@Param() params): Observable<User> {
+    return this.userService.findOne(params.id);
+  }
 
-  findAll() {}
+  @Get()
+  findAll(): Observable<User[]> {
+    return this.userService.findAll();
+  }
 
-  deleteOne() {}
+  @Delete('id')
+  deleteOne(@Param('id') id: string): Observable<any> {
+    return this.userService.deleteOne(Number(id));
+  }
 
-  updateOne() {}
+  @Put(':id')
+  updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
+    return this.userService.updateOne(Number(id), user);
+  }
 }
