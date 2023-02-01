@@ -16,7 +16,7 @@ export class UserService {
   }
 
   findOne(id: number): Observable<User> {
-    return from(this.userRepository.findOneBy({ id }));
+    return from(this.userRepository.findOne({ id }));
   }
   findAll(): Observable<User[]> {
     return from(this.userRepository.find());

@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-
-@Module({
-  imports: [UserModule],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
-=======
 import {
   MiddlewareConsumer,
   Module,
@@ -22,9 +9,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { AuthMiddleware } from './middleware/auth.middleware';
-import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -36,21 +20,8 @@ import { ChatModule } from './chat/chat.module';
       synchronize: true,
     }),
     UserModule,
-    AuthModule,
-    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .exclude(
-        { path: '/api/users', method: RequestMethod.POST },
-        { path: '/api/users/login', method: RequestMethod.POST },
-      )
-      .forRoutes('');
-  }
-}
->>>>>>> 969748e (new url git repo)
+export class AppModule {}

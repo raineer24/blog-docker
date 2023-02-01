@@ -1,63 +1,49 @@
 import {
-  Body,
   Controller,
-  Get,
   Post,
-  Query,
-  Req,
+  Body,
+  Get,
+  Param,
+  Delete,
+  Put,
   UseGuards,
+  Query,
+  UseInterceptors,
+  UploadedFile,
+  Request,
+  Res,
 } from '@nestjs/common';
-import { Pagination } from 'nestjs-typeorm-paginate';
-import { Observable, of, switchMap, from } from 'rxjs';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
-import { CreateUserDto } from '../model/dto/create-user.dto';
-import { LoginUserDto } from '../model/dto/login-user.dto';
-import { LoginResponseI } from '../model/login-response.interface';
-import { UserI } from '../model/user.interface';
-import { UserHelperService } from '../service/user-helper/user-helper.service';
-import { UserService } from '../service/user-service/user.service';
+import { UserService } from '../service/user.service';
+import { User } from '../models/user.interface';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
-  constructor(
-    private userService: UserService,
-    private userHelperService: UserHelperService,
-  ) {}
+  constructor(private userService: UserService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<UserI> {
-    const userEntity: UserI =
-      this.userHelperService.createUserDtoEntity(createUserDto);
-    return this.userService.create(userEntity);
+  create(@Body() user: User): Observable<User> {
+    return this.userService.create(user);
+  }
+
+  @Get(':id')
+  findOne(@Param() params): Observable<User> {
+    return this.userService.findOne(params.id);
   }
 
   @Get()
-  async findAll(
-    @Query('page') page = 1,
-    @Query('limit') limit = 10,
-  ): Promise<Pagination<UserI>> {
-    limit = limit > 100 ? 100 : limit;
-    return this.userService.findAll({
-      page,
-      limit,
-      route: 'http://localhost:3000/api/users',
-    });
+  findAll(): Observable<User[]> {
+    return this.userService.findAll();
   }
 
-  @Get('/find-by-username')
-  async findAllByUsername(@Query('username') username: string) {
-    return this.userService.findAllByUsername(username);
+  @Delete('id')
+  deleteOne(@Param('id') id: string): Observable<any> {
+    return this.userService.deleteOne(Number(id));
   }
 
-  @Post('login')
-  async login(@Body() loginUserDto: LoginUserDto): Promise<LoginResponseI> {
-    const userEntity: UserI =
-      this.userHelperService.loginUserDtoToEntity(loginUserDto);
-    const jwt: string = await this.userService.login(userEntity);
-    return {
-      access_token: jwt,
-      token_type: 'JWT',
-      expires_in: 10000,
-    };
+  @Put(':id')
+  updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
+    return this.userService.updateOne(Number(id), user);
   }
 }
