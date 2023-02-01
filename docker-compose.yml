@@ -5,11 +5,7 @@ services:
   api:
     build:
       dockerfile: Dockerfile
-<<<<<<< HEAD
-     
-=======
       context: ./api
->>>>>>> 969748e (new url git repo)
       # Only build development stage from Dockerfile
       target: development
     # Mount our host dir to the docker container
@@ -30,9 +26,6 @@ services:
       PORT: 3000
     ports:
       - 3000:3000
-<<<<<<< HEAD
-      - 9229:9229 
-=======
       - 9229:9229
   
   # Our Angular Frontend
@@ -71,4 +64,3 @@ services:
     ports:
       - 5050:80
 
->>>>>>> 969748e (new url git repo)
