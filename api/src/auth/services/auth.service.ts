@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Observable, from, of } from 'rxjs';
 import { User } from 'src/user/models/user.interface';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const bcrypt = require('bcrypt');
 @Injectable()
 export class AuthService {
@@ -15,5 +16,7 @@ export class AuthService {
     return from<string>(bcrypt.hash(password, 12));
   }
 
-  comparePasswords(): Observable<any> {}
+  comparePasswords(newPassword: string, passwortHash: string): Observable<any> {
+    return from(bcrypt.compare(newPassword, passwortHash));
+  }
 }
