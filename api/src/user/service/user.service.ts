@@ -19,10 +19,22 @@ export class UserService {
   }
 
   findOne(id: number): Observable<User> {
-    return from(this.userRepository.findOne({ id }));
+    return from(this.userRepository.findOne({ id })).pipe(
+      map((user: User) => {
+        const { password, ...result } = user;
+        return result;
+      }),
+    );
   }
   findAll(): Observable<User[]> {
-    return from(this.userRepository.find());
+    return from(this.userRepository.find()).pipe(
+      map((users: User[]) => {
+        users.forEach(function (v) {
+          delete v.password;
+        });
+        return users;
+      }),
+    );
   }
 
   deleteOne(id: number): Observable<any> {
