@@ -16,4 +16,15 @@ export class UserEntity {
 
   @Column({ unique: true })
   username: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @BeforeInsert()
+  emailToLowerCase() {
+    this.email = this.email.toLowerCase();
+  }
 }
