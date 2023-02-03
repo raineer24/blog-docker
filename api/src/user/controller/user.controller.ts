@@ -23,24 +23,11 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  create(@Body() user: User): Observable<User | Object> {
-    return this.userService.create(user).pipe(
-      map((user: User) => user),
-      catchError((err) => of({ error: err.message })),
-    );
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserI> {
+    const userEntity: User =
+      this.userHelperService.createUserDtoEntity(createUserDto);
+    return this.userService.create(userEntity);
   }
-
-  @Post('login')
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  login(@Body() user: User): Observable<User | Object> {
-    return this.userService.login(user).pipe(
-      map((jwt: string) => {
-        return { access_token: jwt };
-      }),
-    );
-  }
-
   @Get(':id')
   findOne(@Param() params): Observable<User> {
     return this.userService.findOne(params.id);

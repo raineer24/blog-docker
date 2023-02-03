@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../models/user.entity';
 import { Repository, Like } from 'typeorm';
@@ -64,36 +64,16 @@ export class UserService {
     return from(this.userRepository.update(id, user));
   }
 
-  login(user: User): Observable<string> {
-    return this.validateUser(user.email, user.password).pipe(
-      switchMap((user: User) => {
-        if (user) {
-          return this.authService
-            .generateJWT(user)
-            .pipe(map((jwt: string) => jwt));
-        } else {
-          return 'Wrong Credentials';
-        }
-      }),
-    );
-  }
-  validateUser(email: string, password: string): Observable<User> {
-    return this.findByMail(email).pipe(
-      switchMap((user: User) =>
-        this.authService.comparePasswords(password, user.password).pipe(
-          map((match: boolean) => {
-            if (match) {
-              const { password, ...result } = user;
-              return result;
-            } else {
-              throw Error;
-            }
-          }),
-        ),
-      ),
-    );
-  }
   findByMail(email: string): Observable<User> {
     return from(this.userRepository.findOne({ email }));
+  }
+
+  private async mailExists(email: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({ email });
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
