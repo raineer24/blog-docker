@@ -23,8 +23,22 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
-  create(@Body() user: User): Observable<User> {
-    return this.userService.create(user);
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  create(@Body() user: User): Observable<User | Object> {
+    return this.userService.create(user).pipe(
+      map((user: User) => user),
+      catchError((err) => of({ error: err.message })),
+    );
+  }
+
+  @Post('login')
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  login(@Body() user: User): Observable<User | Object> {
+    return this.userService.login(user).pipe(
+      map((jwt: string) => {
+        return { access_token: jwt };
+      }),
+    );
   }
 
   @Get(':id')
