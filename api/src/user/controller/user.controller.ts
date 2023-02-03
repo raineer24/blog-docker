@@ -17,13 +17,17 @@ import { UserService } from '../service/user.service';
 import { User } from '../models/user.interface';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { UserHelperService } from '../service/user-helper/user-helper.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private userHelperService: UserHelperService,
+  ) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<UserI> {
+  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     const userEntity: User =
       this.userHelperService.createUserDtoEntity(createUserDto);
     return this.userService.create(userEntity);

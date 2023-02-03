@@ -14,24 +14,22 @@ export class UserService {
     private authService: AuthService,
   ) {}
 
-  create(user: User) {
-    return this.authService.hashPassword(user.password).pipe(
-      switchMap((passwordHash: string) => {
-        const newUser = new UserEntity();
-        newUser.name = user.name;
-        newUser.username = user.username;
-        newUser.email = user.email;
+  async create(newUser: User): Promise<User> {
+    try {
+      const exists: boolean = await this.mailExists(newUser.email);
+      if (!exists) {
+        const passwordHash: string = await this.hashPassword(newUser.password);
         newUser.password = passwordHash;
-
-        return from(this.userRepository.save(user)).pipe(
-          map((user: User) => {
-            const { password, ...result } = user;
-            return result;
-          }),
-          catchError((err) => throwError(err)),
+        const user = await this.userRepository.save(
+          this.userRepository.create(newUser),
         );
-      }),
-    );
+        return this.findOne(user.id);
+      } else {
+        throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
+      }
+    } catch {
+      throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
+    }
   }
 
   findOne(id: number): Observable<User> {
