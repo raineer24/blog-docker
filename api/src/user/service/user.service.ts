@@ -15,7 +15,23 @@ export class UserService {
   ) {}
 
   create(user: User) {
-    return from(this.userRepository.save(user));
+    return this.authService.hashPassword(user.password).pipe(
+      switchMap((passwordHash: string) => {
+        const newUser = new UserEntity();
+        newUser.name = user.name;
+        newUser.username = user.username;
+        newUser.email = user.email;
+        newUser.password = passwordHash;
+
+        return from(this.userRepository.save(user)).pipe(
+          map((user: User) => {
+            const { password, ...result } = user;
+            return result;
+          }),
+          catchError((err) => throwError(err)),
+        );
+      }),
+    );
   }
 
   findOne(id: number): Observable<User> {
