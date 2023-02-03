@@ -20,6 +20,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { UserHelperService } from '../service/user-helper/user-helper.service';
 import { CreateUserDto } from '../models/dto/create-user.dto';
 import { LoginUserDto } from '../models/dto/login-user.dto';
+import { LoginResponseI } from '../models/login-response.interface';
 @Controller('user')
 export class UserController {
   constructor(
@@ -32,6 +33,17 @@ export class UserController {
     const userEntity: User =
       this.userHelperService.createUserDtoEntity(createUserDto);
     return this.userService.create(userEntity);
+  }
+  @Post('login')
+  async login(@Body() loginUserDto: LoginUserDto): Promise<LoginResponseI> {
+    const userEntity: User =
+      this.userHelperService.loginUserDtoToEntity(loginUserDto);
+    const jwt: string = await this.userService.login(userEntity);
+    return {
+      access_token: jwt,
+      token_type: 'JWT',
+      expires_in: 10000,
+    };
   }
   @Get(':id')
   findOne(@Param() params): Observable<User> {
