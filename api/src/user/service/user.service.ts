@@ -32,6 +32,53 @@ export class UserService {
     }
   }
 
+  async login(user: User): Promise<string> {
+    try {
+      const foundUser: User = await this.findByEmail(user.email.toLowerCase());
+      if (foundUser) {
+        const matches: boolean = await this.validatePassword(
+          user.password,
+          foundUser.password,
+        );
+        if (matches) {
+          const payload: User = await this.findOne(foundUser.id);
+          console.log('payload', payload);
+          return this.authService.generateJwt(payload);
+        } else {
+          throw new HttpException(
+            'Login was not successfull, wrong credentials',
+            HttpStatus.UNAUTHORIZED,
+          );
+        }
+      } else {
+        throw new HttpException(
+          'Login was not successfull, wrong credentials',
+          HttpStatus.UNAUTHORIZED,
+        );
+      }
+    } catch {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+  }
+
+  private async findByEmail(email: string): Promise<User> {
+    return this.userRepository.findOne(
+      { email },
+      { select: ['id', 'email', 'username', 'password'] },
+    );
+  }
+
+  private async hashPassword(password: string): Promise<string> {
+    return this.authService.hashPassword(password);
+  }
+
+  private async validatePassword(
+    password: string,
+    storedPasswordHash: string,
+  ): Promise<any> {
+    return this.authService.comparePasswords(password, storedPasswordHash);
+  }
+
   find0ne(id: number): Observable<User> {
     return from(this.userRepository.findOne({ id })).pipe(
       map((user: User) => {
