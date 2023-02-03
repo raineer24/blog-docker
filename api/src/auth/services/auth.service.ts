@@ -8,16 +8,18 @@ const bcrypt = require('bcrypt');
 export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
-  generateJWT(user: User): Observable<string> {
-    return from(this.jwtService.signAsync({ user }));
+  async generateJwt(user: User): Promise<string> {
+    return this.jwtService.signAsync({ user });
   }
 
-  hashPassword(password: string): Observable<string> {
-    return from<string>(bcrypt.hash(password, 12));
+  async hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, 12);
   }
 
-  comparePasswords(newPassword: string, passwortHash: string): Observable<any> {
-    console.log('hash', passwortHash);
-    return from(bcrypt.compare(newPassword, passwortHash));
+  async comparePasswords(
+    password: string,
+    storedPasswordHash: string,
+  ): Promise<any> {
+    return bcrypt.compare(password, storedPasswordHash);
   }
 }

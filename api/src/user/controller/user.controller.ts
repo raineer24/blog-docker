@@ -18,7 +18,8 @@ import { User } from '../models/user.interface';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserHelperService } from '../service/user-helper/user-helper.service';
-
+import { CreateUserDto } from '../models/dto/create-user.dto';
+import { LoginUserDto } from '../models/dto/login-user.dto';
 @Controller('user')
 export class UserController {
   constructor(
@@ -34,7 +35,7 @@ export class UserController {
   }
   @Get(':id')
   findOne(@Param() params): Observable<User> {
-    return this.userService.findOne(params.id);
+    return this.userService.find0ne(params.id);
   }
 
   @Get()

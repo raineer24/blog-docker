@@ -32,7 +32,7 @@ export class UserService {
     }
   }
 
-  findOne(id: number): Observable<User> {
+  find0ne(id: number): Observable<User> {
     return from(this.userRepository.findOne({ id })).pipe(
       map((user: User) => {
         const { password, ...result } = user;
@@ -64,6 +64,10 @@ export class UserService {
 
   findByMail(email: string): Observable<User> {
     return from(this.userRepository.findOne({ email }));
+  }
+
+  private async findOne(id: number): Promise<User> {
+    return this.userRepository.findOne({ id });
   }
 
   private async mailExists(email: string): Promise<boolean> {
