@@ -65,7 +65,17 @@ export class UserService {
   }
 
   login(user: User): Observable<string> {
-    return;
+    return this.validateUser(user.email, user.password).pipe(
+      switchMap((user: User) => {
+        if (user) {
+          return this.authService
+            .generateJWT(user)
+            .pipe(map((jwt: string) => jwt));
+        } else {
+          return 'Wrong Credentials';
+        }
+      }),
+    );
   }
   validateUser(email: string, password: string): Observable<User> {
     return this.findByMail(email).pipe(
