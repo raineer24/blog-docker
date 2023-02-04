@@ -17,6 +17,7 @@ export class UserService {
   async create(newUser: User): Promise<User> {
     try {
       const exists: boolean = await this.mailExists(newUser.email);
+      console.log('exists', exists);
       if (!exists) {
         const passwordHash: string = await this.hashPassword(newUser.password);
         newUser.password = passwordHash;
@@ -28,7 +29,7 @@ export class UserService {
         throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
       }
     } catch {
-      throw new HttpException('Email is already in use', HttpStatus.CONFLICT);
+      throw new HttpException('Email is already in use!', HttpStatus.CONFLICT);
     }
   }
 

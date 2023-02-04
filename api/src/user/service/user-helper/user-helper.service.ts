@@ -7,6 +7,7 @@ import { User } from '../../models/user.interface';
 export class UserHelperService {
   createUserDtoEntity(createUserDto: CreateUserDto): User {
     return {
+      name: createUserDto.name,
       email: createUserDto.email,
       username: createUserDto.username,
       password: createUserDto.password,
