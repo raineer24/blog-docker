@@ -50,13 +50,13 @@ export class UserController {
     };
   }
 
-  @hasRoles('Admin')
-  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':id')
   findOne(@Param() params): Observable<User> {
     return this.userService.find0ne(params.id);
   }
 
+  @hasRoles('Admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   findAll(): Observable<User[]> {
     return this.userService.findAll();
