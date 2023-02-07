@@ -14,7 +14,12 @@ import { hasRoles } from '../decorators/roles.decorator';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector, private userService: UserService) {}
+  constructor(
+    private reflector: Reflector,
+
+    @Inject(forwardRef(() => UserService))
+    private userService: UserService,
+  ) {}
 
   canActivate(
     context: ExecutionContext,

@@ -50,6 +50,7 @@ export class UserController {
     };
   }
 
+  @hasRoles('Admin')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':id')
   findOne(@Param() params): Observable<User> {
