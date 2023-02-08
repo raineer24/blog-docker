@@ -9,4 +9,6 @@ export class CreateUserDto extends LoginUserDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+  role: any;
 }

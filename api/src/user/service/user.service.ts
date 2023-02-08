@@ -20,12 +20,7 @@ export class UserService {
       console.log('exists', exists);
       if (!exists) {
         const passwordHash: string = await this.hashPassword(newUser.password);
-        const foundUser: User = await this.findByEmail(
-          newUser.email.toLowerCase(),
-        );
-        console.log('founduser', foundUser.email);
         newUser.password = passwordHash;
-        newUser.role = foundUser.role;
         const user = await this.userRepository.save(
           this.userRepository.create(newUser),
         );

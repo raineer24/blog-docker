@@ -11,6 +11,7 @@ export class UserHelperService {
       email: createUserDto.email,
       username: createUserDto.username,
       password: createUserDto.password,
+      role: createUserDto.role,
     };
   }
 
