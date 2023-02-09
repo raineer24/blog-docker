@@ -126,6 +126,7 @@ export class UserService {
   updateOne(id: number, user: User): Observable<any> {
     delete user.email;
     delete user.password;
+    delete user.role;
 
     return from(this.userRepository.update(id, user));
   }
