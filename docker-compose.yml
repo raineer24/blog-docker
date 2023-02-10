@@ -29,19 +29,19 @@ services:
       - 9229:9229
   
   # Our Angular Frontend
-  # frontend:
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: ./frontend
-  #     target: development
-  #   command: npm run start
-  #   volumes:
-  #     - ./frontend:/ner/frontend/src/app
-  #     - /ner/frontend/src/app/node_modules
-  #   ports:
-  #     - 4200:4200
-  #   links:
-  #     - api
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+      target: development
+    command: npm run start
+    volumes:
+      - ./frontend:/ner/frontend/src/app
+      - /ner/frontend/src/app/node_modules
+    ports:
+      - 4200:4200
+    links:
+      - api
 
   # Our Postgres Database for NestJS to connect to
   postgres:
