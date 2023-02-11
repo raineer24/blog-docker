@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,6 +38,7 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatToolbarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
