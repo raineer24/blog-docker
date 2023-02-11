@@ -8,22 +8,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
-  {
-    path: 'private',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./private/private.module').then((m) => m.PrivateModule),
-  },
-  {
-    path: 'public',
-    loadChildren: () =>
-      import('./public/public.module').then((m) => m.PublicModule),
-  },
-  {
-    path: '**',
-    redirectTo: 'public',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: 'private',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () =>
+  //     import('./private/private.module').then((m) => m.PrivateModule),
+  // },
+  // {
+  //   path: 'public',
+  //   loadChildren: () =>
+  //     import('./public/public.module').then((m) => m.PublicModule),
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: 'public',
+  //   pathMatch: 'full',
+  // },
 ];
 
 @NgModule({
