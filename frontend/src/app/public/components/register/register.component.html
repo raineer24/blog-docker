@@ -10,9 +10,8 @@
                 <mat-card-content>
                     <form>
                         <mat-form-field>
-                            <input type="email" matInput placeholder="email" formControlName="email">
-                            <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
-                            <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+                            <input type="text" matInput placeholder="Fullname" formControlName="name">
+                            <mat-error *ngIf="name.touched && name.hasError('required')">Full name is required</mat-error>
                         </mat-form-field>
                         <mat-form-field>
                             <input type="text" matInput placeholder="Username" formControlName="username">
@@ -21,6 +20,11 @@
                         <mat-form-field>
                             <input type="password" matInput placeholder="Password" formControlName="password">
                             <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="email" matInput placeholder="email" formControlName="email">
+                            <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+                            <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
                         </mat-form-field>
 
                         <mat-form-field>
