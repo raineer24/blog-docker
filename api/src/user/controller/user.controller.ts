@@ -24,6 +24,7 @@ import { UserHelperService } from '../service/user-helper/user-helper.service';
 import { CreateUserDto } from '../models/dto/create-user.dto';
 import { LoginUserDto } from '../models/dto/login-user.dto';
 import { LoginResponseI } from '../models/login-response.interface';
+import { Pagination } from 'nestjs-typeorm-paginate';
 @Controller('user')
 export class UserController {
   constructor(
@@ -56,8 +57,16 @@ export class UserController {
   }
 
   @Get()
-  findAll(): Observable<User[]> {
-    return this.userService.findAll();
+  index(
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+  ): Observable<Pagination<User>> {
+    limit = limit > 100 ? 100 : limit;
+    return this.userService.paginate({
+      page: Number(page),
+      limit: Number(limit),
+      route: 'http://localhost:3000/api/user',
+    });
   }
 
   @Delete('id')

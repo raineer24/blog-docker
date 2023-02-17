@@ -21,7 +21,7 @@ export class UserService {
   }
 
   create(user: UserI): Observable<UserI> {
-    return this.http.post<UserI>('api/users', user).pipe(
+    return this.http.post<UserI>('api/user', user).pipe(
       tap((createdUser: UserI) => this.snackbar.open(`User ${createdUser.username} created successfully`, 'Close', {
         duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
       })),

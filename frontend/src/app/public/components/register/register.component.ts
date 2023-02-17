@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
 export class RegisterComponent{
 
   form: FormGroup = new FormGroup({
+    name: new FormControl(null, [Validators.required,]),
     email: new FormControl(null, [Validators.required,]),
     username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
@@ -25,6 +26,7 @@ export class RegisterComponent{
   register() {
     if (this.form.valid) {
       this.userService.create({
+        name: this.name.value,
         email: this.email.value,
         password: this.password.value,
         username: this.username.value
@@ -32,6 +34,10 @@ export class RegisterComponent{
         tap(() => this.router.navigate(['../login']))
       ).subscribe();
     }
+  }
+
+  get name(): FormControl{
+    return this.form.get('name') as FormControl;
   }
 
   get email(): FormControl{
