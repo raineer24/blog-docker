@@ -13,7 +13,7 @@ import {
 export class UsersComponent implements OnInit {
   dataSource: UserData = null;
   displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role']
-
+  pageEvent: PageEvent;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
