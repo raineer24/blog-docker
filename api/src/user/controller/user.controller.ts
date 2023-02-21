@@ -64,11 +64,23 @@ export class UserController {
   ): Observable<Pagination<User>> {
     limit = limit > 100 ? 100 : limit;
     console.log('username,', username);
-    return this.userService.paginate({
-      page: Number(page),
-      limit: Number(limit),
-      route: 'http://localhost:3000/api/user',
-    });
+
+    if (username === null || username === undefined) {
+      return this.userService.paginate({
+        page: Number(page),
+        limit: Number(limit),
+        route: 'http://localhost:3000/api/user',
+      });
+    } else {
+      return this.userService.paginateFilterByUsername(
+        {
+          page: Number(page),
+          limit: Number(limit),
+          route: 'http://localhost:3000/api/user',
+        },
+        { username },
+      );
+    }
   }
 
   @Delete('id')
