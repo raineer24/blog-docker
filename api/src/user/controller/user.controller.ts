@@ -60,8 +60,10 @@ export class UserController {
   index(
     @Query('page') page = 1,
     @Query('limit') limit = 10,
+    @Query('username') username: string,
   ): Observable<Pagination<User>> {
     limit = limit > 100 ? 100 : limit;
+    console.log('username,', username);
     return this.userService.paginate({
       page: Number(page),
       limit: Number(limit),
