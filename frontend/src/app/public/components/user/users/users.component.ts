@@ -24,10 +24,7 @@ export class UsersComponent implements OnInit {
   initDataSource() {
     this.userService
       .findAll(1, 10)
-      .pipe(
-        tap((users) => console.log(users)),
-        map((userData: UserData) => (this.dataSource = userData))
-      )
+      .pipe(map((userData: UserData) => (this.dataSource = userData)))
       .subscribe();
   }
 
@@ -35,15 +32,22 @@ export class UsersComponent implements OnInit {
     let page = event.pageIndex;
     let size = event.pageSize;
 
-    page = page + 1;
-
-    this.userService
-      .findAll(page, size)
-      .pipe(map((userData: UserData) => (this.dataSource = userData)))
-      .subscribe();
+    if (this.filterValue == null) {
+      page = page + 1;
+      this.userService
+        .findAll(page, size)
+        .pipe(map((userData: UserData) => (this.dataSource = userData)))
+        .subscribe();
+    } else {
+      this.userService
+        .paginateByName(page, size, this.filterValue)
+        .pipe(map((userData: UserData) => (this.dataSource = userData)))
+        .subscribe();
+    }
   }
 
   findByName(username: string) {
+    console.log(username);
     this.userService
       .paginateByName(0, 10, username)
       .pipe(map((userData: UserData) => (this.dataSource = userData)))
