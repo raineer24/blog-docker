@@ -76,7 +76,7 @@ export class UserController {
         {
           page: Number(page),
           limit: Number(limit),
-          route: 'http://localhost:3000/api/user',
+          route: 'http://localhost:3000/api/user ',
         },
         { username },
       );

@@ -11,8 +11,9 @@ import {
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
+  filterValue: string = null;
   dataSource: UserData = null;
-  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role']
+  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role'];
   pageEvent: PageEvent;
   constructor(private userService: UserService) {}
 
@@ -21,20 +22,31 @@ export class UsersComponent implements OnInit {
   }
 
   initDataSource() {
-    this.userService.findAll(1, 10).pipe(
-      tap((users) => console.log(users)),
-      map((userData: UserData) => this.dataSource = userData)
-      ).subscribe();
+    this.userService
+      .findAll(1, 10)
+      .pipe(
+        tap((users) => console.log(users)),
+        map((userData: UserData) => (this.dataSource = userData))
+      )
+      .subscribe();
   }
 
   onPaginateChange(event: PageEvent) {
     let page = event.pageIndex;
     let size = event.pageSize;
 
-    page = page +1;
+    page = page + 1;
 
-    this.userService.findAll(page, size).pipe(
-      map((userData: UserData) => this.dataSource = userData)
-    ).subscribe();
+    this.userService
+      .findAll(page, size)
+      .pipe(map((userData: UserData) => (this.dataSource = userData)))
+      .subscribe();
+  }
+
+  findByName(username: string) {
+    this.userService
+      .paginateByName(0, 10, username)
+      .pipe(map((userData: UserData) => (this.dataSource = userData)))
+      .subscribe();
   }
 }
