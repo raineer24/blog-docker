@@ -22,7 +22,7 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   imports: [
     FormsModule,
     ReactiveFormsModule,

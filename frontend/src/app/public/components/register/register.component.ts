@@ -13,9 +13,9 @@ export class RegisterComponent{
 
   form: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required,]),
-    email: new FormControl(null, [Validators.required,]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required, CustomValidators.passwordContainsNumber]),
     passwordConfirm: new FormControl(null, [Validators.required]),
   }, {
     validators: CustomValidators.passwordsMatching

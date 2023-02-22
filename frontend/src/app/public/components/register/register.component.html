@@ -39,6 +39,7 @@
                             <button mat-button type="submit" [disabled]="!form.valid">Register</button>
                         </div>
                     </form>
+                    <small *ngIf="form.get('password').hasError('passwordInvalid')">Password is not containing a number</small> <br>
                 </mat-card-content>
             </mat-card>
         </div>
