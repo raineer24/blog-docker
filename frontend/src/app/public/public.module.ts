@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PublicRoutingModule } from './public-routing.module';
 
 import {MatCardModule} from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     PublicRoutingModule,
     MatCardModule,
     ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
