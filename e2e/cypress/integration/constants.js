@@ -1,2 +1,2 @@
-export const USERNAME = 'thomas@test5.de';
-export const PASSWORD = 'asd';
+export const USERNAME = 'rachelleanngo2@gmail.com';
+export const PASSWORD = 'test123';
