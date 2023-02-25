@@ -1,0 +1,123 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-02-25T04:37:25.779Z",
+    "end": "2023-02-25T04:37:27.798Z",
+    "duration": 2019,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aab73bff-c9a0-4584-8636-c0b5452b20e1",
+      "title": "",
+      "fullFile": "cypress/integration/homepage.spec.js",
+      "file": "cypress/integration/homepage.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+          "title": "Homepage",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should load successfully",
+              "fullTitle": "Homepage should load successfully",
+              "timedOut": null,
+              "duration": 1705,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/');",
+              "err": {},
+              "uuid": "4d111600-7277-4b50-aa2b-9948847fc75e",
+              "parentUUID": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should contain right spelled texts",
+              "fullTitle": "Homepage should contain right spelled texts",
+              "timedOut": null,
+              "duration": 261,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Users');\ncy.contains('Admin');\ncy.contains('Login');\ncy.get('mat-select').click();\ncy.contains('Register');",
+              "err": {},
+              "uuid": "57800290-4c5f-4782-8bbd-09d1835833d3",
+              "parentUUID": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4d111600-7277-4b50-aa2b-9948847fc75e",
+            "57800290-4c5f-4782-8bbd-09d1835833d3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1966,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

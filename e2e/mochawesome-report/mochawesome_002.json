@@ -1,0 +1,108 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-02-25T04:37:31.313Z",
+    "end": "2023-02-25T04:37:38.258Z",
+    "duration": 6945,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bae25ef6-c54e-411a-9bf1-eddccd8b51e1",
+      "title": "",
+      "fullFile": "cypress/integration/login.spec.js",
+      "file": "cypress/integration/login.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4c8582ca-f36e-4d1b-b3c7-70e1b9dbf418",
+          "title": "Test Login Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login user",
+              "fullTitle": "Test Login Flow should login user",
+              "timedOut": null,
+              "duration": 6874,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\");\ncy.get('[formcontrolname=\"email\"]').type(USERNAME);\ncy.get('[formcontrolname=\"password\"]').type(PASSWORD);\ncy.get('[type=\"submit\"]').click();\ncy.url().should(\"include\", \"admin\");",
+              "err": {
+                "message": "AssertionError: Timed out retrying: expected 'http://localhost:4200/public/login' to include 'admin'",
+                "estack": "AssertionError: Timed out retrying: expected 'http://localhost:4200/public/login' to include 'admin'\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/login.spec.js:26:14)",
+                "diff": null
+              },
+              "uuid": "b0ee20eb-3a3c-4286-92e2-f9d84b6fa0d4",
+              "parentUUID": "4c8582ca-f36e-4d1b-b3c7-70e1b9dbf418",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b0ee20eb-3a3c-4286-92e2-f9d84b6fa0d4"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6874,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}
