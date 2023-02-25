@@ -25,6 +25,11 @@ import { CreateUserDto } from '../models/dto/create-user.dto';
 import { LoginUserDto } from '../models/dto/login-user.dto';
 import { LoginResponseI } from '../models/login-response.interface';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import path = require('path');
+import { join } from 'path';
 @Controller('user')
 export class UserController {
   constructor(
@@ -101,5 +106,24 @@ export class UserController {
     @Body() user: User,
   ): Observable<User> {
     return this.userService.updateRoleOfUser(Number(id), user);
+  }
+
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads/profileimages',
+        filename: (req, file, cb) => {
+          const filename: string =
+            path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+          const extension: string = path.parse(file.originalname).ext;
+
+          cb(null, `${filename}${extension}`);
+        },
+      }),
+    }),
+  )
+  uploadFile(@UploadedFile() file): Observable<object> {
+    return of({ imagePath: file.path });
   }
 }
