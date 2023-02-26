@@ -30,6 +30,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { join } from 'path';
+import { Express } from 'express';
 @Controller('user')
 export class UserController {
   constructor(
@@ -121,9 +122,10 @@ export class UserController {
           cb(null, `${filename}${extension}`);
         },
       }),
-    }),
-  )
-  uploadFile(@UploadedFile() file): Observable<object> {
+      // eslint-disable-next-line prettier/prettier
+    }))
+  uploadFile(@UploadedFile() file: Express.Multer.File): Observable<object> {
+    console.log('file', file);
     return of({ imagePath: file.path });
   }
 }
