@@ -123,6 +123,7 @@ export class UserController {
     return this.userService.updateRoleOfUser(Number(id), user);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', storage))
   uploadFile(@UploadedFile() file: Express.Multer.File): Observable<object> {
