@@ -31,6 +31,20 @@ import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { join } from 'path';
 import { Express } from 'express';
+
+export const storage = {
+  storage: diskStorage({
+    destination: './uploads/profileimages',
+    filename: (req, file, cb) => {
+      const filename: string =
+        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+      const extension: string = path.parse(file.originalname).ext;
+
+      cb(null, `${filename}${extension}`);
+    },
+  }),
+  // eslint-disable-next-line prettier/prettier
+};
 @Controller('user')
 export class UserController {
   constructor(
@@ -110,22 +124,9 @@ export class UserController {
   }
 
   @Post('upload')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads/profileimages',
-        filename: (req, file, cb) => {
-          const filename: string =
-            path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-          const extension: string = path.parse(file.originalname).ext;
-
-          cb(null, `${filename}${extension}`);
-        },
-      }),
-      // eslint-disable-next-line prettier/prettier
-    }))
+  @UseInterceptors(FileInterceptor('file', storage))
   uploadFile(@UploadedFile() file: Express.Multer.File): Observable<object> {
     console.log('file', file);
-    return of({ imagePath: file.path });
+    return of({ imagePath: file.filename });
   }
 }
