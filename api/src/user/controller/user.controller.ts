@@ -130,17 +130,24 @@ export class UserController {
     @UploadedFile() file: Express.Multer.File,
     @Request() req,
   ): Observable<object> {
-    const user: User = req.user.user;
-    console.log('user', user);
+    const user: User = req.user;
+    console.log('user', req.user);
     return this.userService
       .updateOne(user.id, { profileImage: file.filename })
       .pipe(
         tap((user: User) => console.log(user)),
-        map((user: User) => ({ profileImage: user.profileImage }));
+        map((user: User) => ({ profileImage: user.profileImage })),
+      );
   }
 
   @Get('profile-image/:imagename')
-  findProfileImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
-    return of(res.sendFile(join(process.cwd(), 'uploads/profileimages' + imagename)));
+  findProfileImage(
+    @Param('imagename') imagename,
+    @Res() res,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+  ): Observable<Object> {
+    return of(
+      res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename)),
+    );
   }
 }
