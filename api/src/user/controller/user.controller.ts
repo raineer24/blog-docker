@@ -126,8 +126,21 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@UploadedFile() file: Express.Multer.File): Observable<object> {
-    console.log('file', file);
-    return of({ imagePath: file.filename });
+  uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Request() req,
+  ): Observable<object> {
+    const user: User = req.user.user;
+    console.log('user', user);
+    return this.userService
+      .updateOne(user.id, { profileImage: file.filename })
+      .pipe(
+        tap((user: User) => console.log(user)),
+        map((user: User) => ({ profileImage: user.profileImage }));
+  }
+
+  @Get('profile-image/:imagename')
+  findProfileImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
+    return of(res.sendFile(join(process.cwd(), 'uploads/profileimages' + imagename)));
   }
 }
