@@ -31,6 +31,7 @@ import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { join } from 'path';
 import { Express } from 'express';
+import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
 
 export const storage = {
   storage: diskStorage({
@@ -108,6 +109,7 @@ export class UserController {
     return this.userService.deleteOne(Number(id));
   }
 
+  @UseGuards(JwtAuthGuard, UserIsUserGuard)
   @Put(':id')
   updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
     return this.userService.updateOne(Number(id), user);
