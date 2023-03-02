@@ -32,6 +32,8 @@ import path = require('path');
 import { join } from 'path';
 import { Express } from 'express';
 import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
+import * as multer from 'multer';
+
 
 export const storage = {
   storage: diskStorage({
