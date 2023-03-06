@@ -32,8 +32,8 @@ import path = require('path');
 import { join } from 'path';
 import { Express } from 'express';
 import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
-import * as multer from 'multer';
 
+import 'multer';
 
 export const storage = {
   storage: diskStorage({
@@ -130,12 +130,10 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(
-    @UploadedFile() file: Express.Multer.File,
-    @Request() req,
-  ): Observable<object> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  uploadFile(@UploadedFile() file, @Request() req): Observable<Object> {
     const user: User = req.user;
-    console.log('user', req.user);
+
     return this.userService
       .updateOne(user.id, { profileImage: file.filename })
       .pipe(
@@ -148,7 +146,7 @@ export class UserController {
   findProfileImage(
     @Param('imagename') imagename,
     @Res() res,
-    // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   ): Observable<Object> {
     return of(
       res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename)),
