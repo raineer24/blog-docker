@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 4,
-    "passes": 0,
+    "passes": 2,
     "pending": 0,
-    "failures": 4,
-    "start": "2023-02-25T04:37:43.269Z",
-    "end": "2023-02-25T04:38:02.214Z",
-    "duration": 18945,
+    "failures": 2,
+    "start": "2023-02-25T05:06:09.670Z",
+    "end": "2023-02-25T05:06:20.182Z",
+    "duration": 10512,
     "testsRegistered": 4,
-    "passPercent": 0,
+    "passPercent": 50,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "cde555a3-a054-4123-a134-db83e21ce764",
+      "uuid": "d9c8ace3-1235-47c3-9771-e0442edd5ba7",
       "title": "",
       "fullFile": "cypress/integration/users.spec.js",
       "file": "cypress/integration/users.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "f3857d37-62cb-4cc7-be34-df900b40d179",
+          "uuid": "181d7cc9-e4d1-4a6d-a3d5-eb5eceb13627",
           "title": "Users Page",
           "fullFile": "",
           "file": "",
@@ -38,21 +38,17 @@
               "title": "should load user table",
               "fullTitle": "Users Page should load user table",
               "timedOut": null,
-              "duration": 5888,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 1260,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.visit('/');\ncy.get('[routerlink=\"/public/users\"]').click();\ncy.get('.mat-table');",
-              "err": {
-                "message": "AssertionError: Timed out retrying: Expected to find element: `.mat-table`, but never found it.",
-                "estack": "AssertionError: Timed out retrying: Expected to find element: `.mat-table`, but never found it.\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:8:8)",
-                "diff": null
-              },
-              "uuid": "d2c34687-e837-410f-8b98-e6c9c7471b77",
-              "parentUUID": "f3857d37-62cb-4cc7-be34-df900b40d179",
+              "err": {},
+              "uuid": "e25489a6-fc86-4552-ab25-3f3644b28f9f",
+              "parentUUID": "181d7cc9-e4d1-4a6d-a3d5-eb5eceb13627",
               "isHook": false,
               "skipped": false
             },
@@ -60,21 +56,17 @@
               "title": "should display right column names",
               "fullTitle": "Users Page should display right column names",
               "timedOut": null,
-              "duration": 4190,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 58,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.contains('Id');\ncy.contains('Name');\ncy.contains('Username');\ncy.contains('Email');\ncy.contains('Role');",
-              "err": {
-                "message": "AssertionError: Timed out retrying: Expected to find content: 'Id' but never did.",
-                "estack": "AssertionError: Timed out retrying: Expected to find content: 'Id' but never did.\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:11:8)",
-                "diff": null
-              },
-              "uuid": "613358c9-cbc6-4abe-8851-0c6e36e331a8",
-              "parentUUID": "f3857d37-62cb-4cc7-be34-df900b40d179",
+              "err": {},
+              "uuid": "c17088b8-19e0-4046-9adf-a0982682b21a",
+              "parentUUID": "181d7cc9-e4d1-4a6d-a3d5-eb5eceb13627",
               "isHook": false,
               "skipped": false
             },
@@ -82,7 +74,7 @@
               "title": "should navigate to next page",
               "fullTitle": "Users Page should navigate to next page",
               "timedOut": null,
-              "duration": 4145,
+              "duration": 4217,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -91,12 +83,12 @@
               "context": null,
               "code": "cy.get('[aria-label=\"Next page\"]').click();",
               "err": {
-                "message": "AssertionError: Timed out retrying: Expected to find element: `[aria-label=\"Next page\"]`, but never found it.",
-                "estack": "AssertionError: Timed out retrying: Expected to find element: `[aria-label=\"Next page\"]`, but never found it.\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:18:8)",
+                "message": "CypressError: Timed out retrying: `cy.click()` failed because this element is `disabled`:\n\n`<button mat-icon-button=\"\" type=\"button\" class=\"mat-focus-indicator mat-tooltip-trigger mat-paginator-navigation-next mat-icon-button mat-button-base mat-button-disabled\" ng-reflect-message=\"Next page\" ng-reflect-disabled=\"true\" ng-reflect-position=\"above\" aria-label=\"Next page\" disabled=\"true\">...</button>`\n\nFix this problem, or use `{force: true}` to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying: `cy.click()` failed because this element is `disabled`:\n\n`<button mat-icon-button=\"\" type=\"button\" class=\"mat-focus-indicator mat-tooltip-trigger mat-paginator-navigation-next mat-icon-button mat-button-base mat-button-disabled\" ng-reflect-message=\"Next page\" ng-reflect-disabled=\"true\" ng-reflect-position=\"above\" aria-label=\"Next page\" disabled=\"true\">...</button>`\n\nFix this problem, or use `{force: true}` to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureNotDisabled (http://localhost:4200/__cypress/runner/cypress_runner.js:160191:24)\n    at runAllChecks (http://localhost:4200/__cypress/runner/cypress_runner.js:149296:14)\n    at retryActionability (http://localhost:4200/__cypress/runner/cypress_runner.js:149352:16)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9956:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:4200/__cypress/runner/cypress_runner.js:7230:29)\n    at tryFn (http://localhost:4200/__cypress/runner/cypress_runner.js:163481:24)\n    at whenStable (http://localhost:4200/__cypress/runner/cypress_runner.js:163522:12)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:163040:16\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9956:23)\n    at Promise._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:7891:31)\n    at Promise._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:7948:18)\n    at Promise._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:7993:10)\n    at Promise._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:8073:18)\n    at Promise._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:8017:18)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:9631:46\nFrom Your Spec Code:\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:18:40)",
                 "diff": null
               },
-              "uuid": "c91f0f7c-4606-4a5f-bcdf-349f90ff1301",
-              "parentUUID": "f3857d37-62cb-4cc7-be34-df900b40d179",
+              "uuid": "f74a9117-6428-4ca9-b979-8fbd9950341f",
+              "parentUUID": "181d7cc9-e4d1-4a6d-a3d5-eb5eceb13627",
               "isHook": false,
               "skipped": false
             },
@@ -104,7 +96,7 @@
               "title": "should filter users by Username",
               "fullTitle": "Users Page should filter users by Username",
               "timedOut": null,
-              "duration": 4625,
+              "duration": 4810,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -113,27 +105,28 @@
               "context": null,
               "code": "cy.get('[placeholder=\"Search Username\"]').type('rachelleann251');\ncy.get('mat-table').find('mat-row').should('have.length', 3);",
               "err": {
-                "message": "AssertionError: Timed out retrying: Expected to find element: `mat-table`, but never found it.",
-                "estack": "AssertionError: Timed out retrying: Expected to find element: `mat-table`, but never found it.\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:22:8)",
-                "diff": null
+                "message": "AssertionError: Timed out retrying: Not enough elements found. Found '1', expected '3'.",
+                "estack": "AssertionError: Timed out retrying: Not enough elements found. Found '1', expected '3'.\n    at Context.eval (http://localhost:4200/__cypress/tests?p=cypress/integration/users.spec.js:22:41)",
+                "diff": "- 1\n+ 3\n"
               },
-              "uuid": "283bc079-e5b3-45b6-879a-ef94e6f38762",
-              "parentUUID": "f3857d37-62cb-4cc7-be34-df900b40d179",
+              "uuid": "6dde50a1-70e5-4551-b5fc-a2ba38654f25",
+              "parentUUID": "181d7cc9-e4d1-4a6d-a3d5-eb5eceb13627",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
+          "passes": [
+            "e25489a6-fc86-4552-ab25-3f3644b28f9f",
+            "c17088b8-19e0-4046-9adf-a0982682b21a"
+          ],
           "failures": [
-            "d2c34687-e837-410f-8b98-e6c9c7471b77",
-            "613358c9-cbc6-4abe-8851-0c6e36e331a8",
-            "c91f0f7c-4606-4a5f-bcdf-349f90ff1301",
-            "283bc079-e5b3-45b6-879a-ef94e6f38762"
+            "f74a9117-6428-4ca9-b979-8fbd9950341f",
+            "6dde50a1-70e5-4551-b5fc-a2ba38654f25"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 18848,
+          "duration": 10345,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

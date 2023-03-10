@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2023-02-25T04:37:25.779Z",
-    "end": "2023-02-25T04:37:27.798Z",
-    "duration": 2019,
+    "start": "2023-02-25T05:05:58.574Z",
+    "end": "2023-02-25T05:06:00.174Z",
+    "duration": 1600,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "aab73bff-c9a0-4584-8636-c0b5452b20e1",
+      "uuid": "bab3aaf8-ca31-4ce9-9772-cc95bfee536b",
       "title": "",
       "fullFile": "cypress/integration/homepage.spec.js",
       "file": "cypress/integration/homepage.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+          "uuid": "56bd6541-16b5-4b30-bf97-2274486513ad",
           "title": "Homepage",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should load successfully",
               "fullTitle": "Homepage should load successfully",
               "timedOut": null,
-              "duration": 1705,
+              "duration": 1378,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.visit('/');",
               "err": {},
-              "uuid": "4d111600-7277-4b50-aa2b-9948847fc75e",
-              "parentUUID": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+              "uuid": "c2be8b91-745d-4a2c-b86b-ec91e900c073",
+              "parentUUID": "56bd6541-16b5-4b30-bf97-2274486513ad",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should contain right spelled texts",
               "fullTitle": "Homepage should contain right spelled texts",
               "timedOut": null,
-              "duration": 261,
+              "duration": 180,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.contains('Users');\ncy.contains('Admin');\ncy.contains('Login');\ncy.get('mat-select').click();\ncy.contains('Register');",
               "err": {},
-              "uuid": "57800290-4c5f-4782-8bbd-09d1835833d3",
-              "parentUUID": "fcac1a3c-2349-44fa-92ae-d42c5be5eede",
+              "uuid": "e78b7d9a-07f3-4e8c-afec-03a3bc67207a",
+              "parentUUID": "56bd6541-16b5-4b30-bf97-2274486513ad",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "4d111600-7277-4b50-aa2b-9948847fc75e",
-            "57800290-4c5f-4782-8bbd-09d1835833d3"
+            "c2be8b91-745d-4a2c-b86b-ec91e900c073",
+            "e78b7d9a-07f3-4e8c-afec-03a3bc67207a"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1966,
+          "duration": 1558,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
