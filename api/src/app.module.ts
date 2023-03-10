@@ -18,7 +18,7 @@ import entities from '../src/user/models/';
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      url: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
     }),
